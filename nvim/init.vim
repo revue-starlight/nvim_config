@@ -1,3 +1,4 @@
+let mapleader="\<space>"
 :set number
 :set relativenumber
 :set autoindent
@@ -6,7 +7,46 @@
 :set smarttab
 :set softtabstop=4
 :set mouse=a
+:set encoding=utf-8
+:set backspace=indent,eol,start
+:set autochdir
+:set scrolloff=10
 
+exec "nohlsearch"
+:set incsearch
+:set smartcase
+:set ignorecase
+
+
+" map
+" split window
+map sl :set splitright<CR>:vsplit<CR>
+map sh :set nosplitright<CR>:vsplit<CR>
+map sk :set nosplitbelow<CR>:split<CR>
+map sj :set splitbelow<CR>:split<CR>
+
+" change window
+map sd <C-w>l
+map sa <C-w>h
+map sw <C-w>k
+map ss <C-w>j
+
+" change window size
+map sqw :res +5<CR>
+map sqs :res -5<CR>
+map sqd :vertical resize +5<CR>
+map sqa :vertical resize -5<CR>
+
+" 
+map sv <C-w>t<C-w>H
+map sh <C-w>t<C-w>K
+
+"
+map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+map S :w<CR>
+map s <nop>
+map Q :q<CR>
+noremap <LEADER><CR> :nohlsearch<CR>
 
 " Completion
 :inoremap ( ()<ESC>i
@@ -19,9 +59,9 @@
 :inoremap ' ''<ESC>i
 function! ClosePair(char)
     if getline('.')[col('.') - 1] == a:char
-		        return "\<Right>"
+		return "\<Right>"
 	else
-			    return a:char
+		return a:char
 	endif
 endfunction
 
