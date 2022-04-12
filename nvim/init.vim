@@ -17,8 +17,30 @@ exec "nohlsearch"
 :set smartcase
 :set ignorecase
 
+" COC hurt my eyes
+"hi CocInfoFloat guifg=#ff0000 guibg=#000000
+"
+"hi CocErrorFloat guifg=#ff0000 guibg=#000000
+"hi CocWarningFloat guifg=#ff0000 guibg=#000000
+"hi Pmenu guifg=#ffffff guibg=#000000
+"hi PmenuSel guifg=#ffffff guibg=#008B8B
+"
+"
+"func! s:my_colors_setup() abort
+"  highlight CocFloating ctermbg=8 " For background color
+"  highlight CocErrorFloat ctermfg=255 " For text color
+"endfunc
+"
+"augroup colorscheme_coc_setup | au!
+"  au VimEnter * call s:my_colors_setup()
+"augroup END
 
-" map
+
+nnoremap <C-j> jjjjj
+nnoremap <C-k> kkkkk
+
+" terminal
+tnoremap s<Esc> <C-\><C-n> 
 " split window
 map sl :set splitright<CR>:vsplit<CR>
 map sh :set nosplitright<CR>:vsplit<CR>
@@ -37,9 +59,6 @@ map sqs :res -5<CR>
 map sqd :vertical resize +5<CR>
 map sqa :vertical resize -5<CR>
 
-" 
-map sv <C-w>t<C-w>H
-map sh <C-w>t<C-w>K
 
 "
 map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
@@ -51,12 +70,10 @@ noremap <LEADER><CR> :nohlsearch<CR>
 " Completion
 :inoremap ( ()<ESC>i
 :inoremap ) <c-r>=ClosePair(')')<CR>
-:inoremap { {<CR>}<ESC>O
+:inoremap { {}<ESC>i
 :inoremap } <c-r>=ClosePair('}')<CR>
 :inoremap [ []<ESC>i
 :inoremap ] <c-r>=ClosePair(']')<CR>
-:inoremap " ""<ESC>i
-:inoremap ' ''<ESC>i
 function! ClosePair(char)
     if getline('.')[col('.') - 1] == a:char
 		return "\<Right>"
@@ -68,9 +85,13 @@ endfunction
 
 call plug#begin()
 
+	Plug 'https://github.com/morhetz/gruvbox.git' " color scheme
+	Plug 'terryma/vim-multiple-cursors' " Ctrl+D 
     Plug 'http://github.com/vim-airline/vim-airline' " Status bar
     Plug 'http://github.com/preservim/nerdtree'   " NerdTree
 	Plug 'neoclide/coc.nvim', {'branch': 'release'} " Auto completion
+	Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
+	Plug 'iamcco/markdown-preview.nvim' , {'do':'cd app & yarn install' }
 
 call plug#end()
 
@@ -267,3 +288,15 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+
+
+
+" Markdown preview
+let g:mkdp_open_to_the_world = 1
+
+let g:mkdp_open_ip = '10.0.0.97'
+
+let g:mkdp_port = '8894'
+
+colorscheme gruvbox

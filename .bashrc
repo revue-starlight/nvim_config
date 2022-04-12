@@ -1,0 +1,5 @@
+alias vim="nvim"
+alias repo="cd ~/repos/"
+alias envconf="nvim ~/.bashrc"
+alias vimconf="nvim ~/.config/nvim/init.vim"
+alias cocconf="nvim ~/.config/nvim/coc-settings.json"
